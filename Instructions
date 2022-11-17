@@ -90,3 +90,14 @@ RegisterNetEvent('consumables:client:whibleycookie3', function(itemName)
 end)
 
 
+
+
+Also add the following to your qb-core/shared/items
+
+ ["whibleycookie1"]			= {["name"] = "whibleycookie1",			["label"] = "Chocolate Cookie",	["weight"] = 200,	["type"] = "item",	["image"] = "chocolatecookie.png",	    ["unique"] = false,      ["useable"] = true,		["shouldClose"] = true,		["combinable"] = nil,   ["description"] = "Whibleys makes great cookies & other stuff..."},
+	["whibleycookie2"]			= {["name"] = "whibleycookie2",			["label"] = "Whibleys Special cookie",	["weight"] = 200,	["type"] = "item",	["image"] = "specialcookie.png",	    ["unique"] = false,      ["useable"] = true,		["shouldClose"] = true,		["combinable"] = nil,   ["description"] = "One of the special cookies made at Whibleys"},
+	["whibleycookie3"]			= {["name"] = "whibleycookie3",			["label"] = "Special White Cookie",	["weight"] = 200,	["type"] = "item",	["image"] = "specialcookie2.png",	    ["unique"] = false,      ["useable"] = true,		["shouldClose"] = true,		["combinable"] = nil,   ["description"] = "A special cookie filled with a white supstance"},
+	["whibleycookie4"]			= {["name"] = "whibleycookie4",			["label"] = "Whibleys Special cookie",	["weight"] = 200,	["type"] = "item",	["image"] = "specialcookie.png",	    ["unique"] = false,      ["useable"] = true,		["shouldClose"] = true,		["combinable"] = nil,   ["description"] = "One of the special cookies made at Whibleys"},
+
+
+
