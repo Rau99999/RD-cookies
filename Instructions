@@ -1,0 +1,92 @@
+qb-smallresources/config 
+Add the following to ConsumeablesEat
+
+    -- Whibley Cookies
+    ["whibleycookie1"] = math.random(25, 30),
+    ["whibleycookie2"] = math.random(25, 30),
+    ["whibleycookie3"] = math.random(25, 30),
+    ["whibleycookie4"] = math.random(25, 30),
+}
+
+
+
+
+add the following to qb-smallresources/server/consumeables.lua 
+
+--Whibleys Cookies--
+QBCore.Functions.CreateUseableItem("whibleycookie1", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+        TriggerClientEvent("consumables:client:whibleycookie1", source, item.name)
+    end
+end)
+QBCore.Functions.CreateUseableItem("whibleycookie2", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+        TriggerClientEvent("consumables:client:whibleycookie2", source, item.name)
+    end
+end)
+QBCore.Functions.CreateUseableItem("whibleycookie3", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if Player.Functions.RemoveItem(item.name, 1, item.slot) then
+        TriggerClientEvent("consumables:client:whibleycookie3", source, item.name)
+    end
+end)
+
+
+
+
+
+Add the following to qb-smallresources/client/consumeables.lua 
+
+--Whibleys Cookies
+RegisterNetEvent('consumables:client:whibleycookie1', function(itemName)
+    TriggerEvent('animations:client:EmoteCommandStart', {"donut"})
+    QBCore.Functions.Progressbar("eat_something", "Whibleys Cookies.. Mmm..", 5000, false, true, {
+        disableMovement = false,
+        disableCarMovement = false,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function() -- Done
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items[itemName], "remove")
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+        TriggerServerEvent("QBCore:Server:SetMetaData", "hunger", QBCore.Functions.GetPlayerData().metadata["hunger"] + ConsumeablesEat[itemName])
+    end)
+end)
+RegisterNetEvent('consumables:client:whibleycookie2', function(itemName)
+    TriggerEvent('animations:client:EmoteCommandStart', {"donut"})
+    QBCore.Functions.Progressbar("eat_something", "Eating Special Cookie...", 5000, false, true, {
+        disableMovement = false,
+        disableCarMovement = false,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function() -- Done
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items[itemName], "remove")
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+        TriggerServerEvent("QBCore:Server:SetMetaData", "hunger", QBCore.Functions.GetPlayerData().metadata["hunger"] + ConsumeablesEat[itemName])
+        TriggerServerEvent('hud:server:RelieveStress', math.random(2, 4))
+    end)
+    TriggerEvent("evidence:client:SetStatus", "weedsmell", 100)
+    TriggerEvent('animations:client:SmokeWeed')
+end)
+RegisterNetEvent('consumables:client:whibleycookie3', function(itemName)
+    TriggerEvent('animations:client:EmoteCommandStart', {"donut"})
+    QBCore.Functions.Progressbar("eat_something", "Eating Special Cookie...", 5000, false, true, {
+        disableMovement = false,
+        disableCarMovement = false,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function() -- Done
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items[itemName], "remove")
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+        TriggerServerEvent("QBCore:Server:SetMetaData", "hunger", QBCore.Functions.GetPlayerData().metadata["hunger"] + ConsumeablesEat[itemName])
+        TriggerServerEvent('hud:server:RelieveStress', math.random(2, 4))
+        TriggerEvent("evidence:client:SetStatus", "widepupils", 200)
+        CrackBaggyEffect()
+    end)
+end)
+
+
